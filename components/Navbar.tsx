@@ -1,4 +1,5 @@
 import React from 'react';
+import { UserButton, useUser } from '@clerk/clerk-react';
 import { LOGO_IMAGE_URL } from '../constants';
 
 interface NavbarProps {
@@ -7,6 +8,7 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleDarkMode }) => {
+  const { user } = useUser();
   return (
     <nav className="h-16 flex items-center justify-between px-6 bg-white/90 dark:bg-surface-dark/90 backdrop-blur-md border-b border-blue-100/50 dark:border-slate-800 z-50 shadow-sm relative transition-colors duration-300">
       <div className="flex items-center gap-4">
@@ -36,12 +38,18 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleDarkMode }) => {
         
         <div className="flex items-center gap-3 pl-4 border-l border-slate-200 dark:border-slate-700">
           <div className="text-right hidden sm:block">
-            <p className="text-sm font-bold text-slate-700 dark:text-slate-200 leading-none">Admin Usuario</p>
+            <p className="text-sm font-bold text-slate-700 dark:text-slate-200 leading-none">
+              {user?.fullName || user?.firstName || 'Usuario'}
+            </p>
             <p className="text-xs text-secondary font-medium mt-1">Quito, EC</p>
           </div>
-          <div className="h-9 w-9 rounded-full bg-gradient-to-br from-secondary to-accent flex items-center justify-center text-white font-bold shadow-lg shadow-blue-500/30 ring-2 ring-white dark:ring-slate-700">
-            A
-          </div>
+          <UserButton 
+            appearance={{
+              elements: {
+                avatarBox: "h-9 w-9 rounded-full shadow-lg shadow-blue-500/30 ring-2 ring-white dark:ring-slate-700"
+              }
+            }}
+          />
         </div>
       </div>
     </nav>

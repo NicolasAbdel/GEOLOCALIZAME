@@ -3,15 +3,24 @@ import { HistoryItem } from '../types';
 
 interface SidebarItemProps {
   item: HistoryItem;
+  onLocationClick?: (lat: number, lng: number) => void;
 }
 
-const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
+const SidebarItem: React.FC<SidebarItemProps> = ({ item, onLocationClick }) => {
   // Styles change slightly if it's the most recent one (mock logic based on ID)
   const isMostRecent = item.id === '1' || item.id === '2';
 
+  const handleClick = () => {
+    if (onLocationClick) {
+      onLocationClick(item.lat, item.lng);
+    }
+  };
+
   if (!isMostRecent) {
     return (
-      <div className="group p-4 rounded-xl bg-slate-50/30 dark:bg-slate-800/20 border border-transparent opacity-70 hover:opacity-100 transition-opacity">
+      <div 
+        onClick={handleClick}
+        className="group p-4 rounded-xl bg-slate-50/30 dark:bg-slate-800/20 border border-transparent opacity-70 hover:opacity-100 transition-opacity cursor-pointer">
         <div className="flex items-start gap-3">
           <div className="mt-1.5 h-2.5 w-2.5 rounded-full bg-slate-300 dark:bg-slate-600"></div>
           <div>
@@ -25,7 +34,9 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
   }
 
   return (
-    <div className="group p-4 rounded-xl bg-white/40 dark:bg-slate-900/40 border border-white/40 dark:border-slate-700/30 hover:bg-white/60 dark:hover:bg-slate-800/60 transition-all duration-300 cursor-pointer shadow-sm hover:shadow-neon-blue relative overflow-hidden">
+    <div 
+      onClick={handleClick}
+      className="group p-4 rounded-xl bg-white/40 dark:bg-slate-900/40 border border-white/40 dark:border-slate-700/30 hover:bg-white/60 dark:hover:bg-slate-800/60 transition-all duration-300 cursor-pointer shadow-sm hover:shadow-neon-blue relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
       <div className="flex items-start gap-3 relative z-10">
         <div className="mt-1.5 relative">

@@ -4,6 +4,8 @@ export interface HistoryItem {
   locationName: string;
   address: string;
   isLive?: boolean;
+  lat: number;
+  lng: number;
 }
 
 export interface MapMarkerData {

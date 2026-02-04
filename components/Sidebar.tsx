@@ -1,8 +1,41 @@
-import React from 'react';
-import { HISTORY_DATA } from '../constants';
+import React, { useState } from 'react';
+import { HISTORY_DATA, MAP_CENTER } from '../constants';
 import SidebarItem from './SidebarItem';
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  onLocationClick?: (lat: number, lng: number) => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ onLocationClick }) => {
+  const [showCopied, setShowCopied] = useState(false);
+
+  const handleShareLocation = async () => {
+    const currentLocation = HISTORY_DATA[0]; // Ubicación más reciente
+    const shareUrl = `${window.location.origin}?lat=${currentLocation.lat}&lng=${currentLocation.lng}&name=${encodeURIComponent(currentLocation.locationName)}`;
+    
+    // Intentar usar Web Share API si está disponible
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Mi ubicación en vivo',
+          text: `Estoy en ${currentLocation.locationName}`,
+          url: shareUrl
+        });
+      } catch (err) {
+        // Usuario canceló o error
+        console.log('Share cancelled');
+      }
+    } else {
+      // Fallback: copiar al portapapeles
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        setShowCopied(true);
+        setTimeout(() => setShowCopied(false), 2000);
+      } catch (err) {
+        console.error('Error al copiar:', err);
+      }
+    }
+  };
   return (
     <aside className="absolute left-4 top-4 bottom-4 w-80 z-40 flex flex-col perspective-1000 pointer-events-none">
       <div className="h-full w-full glass-panel rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 pointer-events-auto ring-1 ring-white/20 dark:ring-white/10">
@@ -21,13 +54,20 @@ const Sidebar: React.FC = () => {
         {/* List */}
         <div className="flex-1 overflow-y-auto custom-scrollbar p-3 space-y-3">
           {HISTORY_DATA.map((item) => (
-            <SidebarItem key={item.id} item={item} />
+            <SidebarItem key={item.id} item={item} onLocationClick={onLocationClick} />
           ))}
         </div>
 
         {/* Footer / CTA */}
         <div className="p-4 border-t border-blue-100/50 dark:border-slate-700/50 bg-gradient-to-b from-transparent to-white/50 dark:to-slate-900/50">
-          <button className="w-full relative group overflow-hidden rounded-xl bg-gradient-to-r from-accent to-secondary shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-all duration-300 transform hover:-translate-y-1 animate-subtle-pulse border border-white/20">
+          {showCopied && (
+            <div className="mb-2 p-2 bg-green-500 text-white text-xs text-center rounded-lg animate-pulse">
+              ✓ Link copiado al portapapeles
+            </div>
+          )}
+          <button 
+            onClick={handleShareLocation}
+            className="w-full relative group overflow-hidden rounded-xl bg-gradient-to-r from-accent to-secondary shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-all duration-300 transform hover:-translate-y-1 animate-subtle-pulse border border-white/20">
             <div className="absolute inset-0 bg-white/20 group-hover:translate-x-full transition-transform duration-700 ease-in-out -skew-x-12"></div>
             <div className="relative py-4 px-6 flex items-center justify-center gap-3 text-white">
               <span className="material-symbols-outlined text-2xl drop-shadow-md">security</span>

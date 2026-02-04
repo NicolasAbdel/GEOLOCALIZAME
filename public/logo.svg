@@ -1,0 +1,42 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fondo circular -->
+  <circle cx="100" cy="100" r="100" fill="#3d1810"/>
+  
+  <!-- Decoración circular superior -->
+  <circle cx="100" cy="30" r="12" fill="#a88c6c"/>
+  <circle cx="100" cy="30" r="8" fill="#3d1810"/>
+  
+  <!-- Decoración circular superior derecha -->
+  <circle cx="155" cy="45" r="12" fill="#a88c6c"/>
+  <circle cx="155" cy="45" r="8" fill="#3d1810"/>
+  
+  <!-- Decoración circular derecha -->
+  <circle cx="170" cy="100" r="12" fill="#a88c6c"/>
+  <circle cx="170" cy="100" r="8" fill="#3d1810"/>
+  
+  <!-- Decoración circular inferior derecha -->
+  <circle cx="155" cy="155" r="12" fill="#a88c6c"/>
+  <circle cx="155" cy="155" r="8" fill="#3d1810"/>
+  
+  <!-- Decoración circular inferior izquierda -->
+  <circle cx="45" cy="155" r="12" fill="#a88c6c"/>
+  <circle cx="45" cy="155" r="8" fill="#3d1810"/>
+  
+  <!-- Decoración circular izquierda -->
+  <circle cx="30" cy="100" r="12" fill="#a88c6c"/>
+  <circle cx="30" cy="100" r="8" fill="#3d1810"/>
+  
+  <!-- Decoración circular superior izquierda -->
+  <circle cx="45" cy="45" r="12" fill="#a88c6c"/>
+  <circle cx="45" cy="45" r="8" fill="#3d1810"/>
+  
+  <!-- Letra G central -->
+  <text x="100" y="120" font-family="Georgia, serif" font-size="80" font-weight="bold" fill="white" text-anchor="middle">G</text>
+  
+  <!-- Icono de ubicación inferior -->
+  <g transform="translate(100, 165)">
+    <circle cx="0" cy="-5" r="18" fill="#a88c6c"/>
+    <path d="M 0 -15 L 0 0 C -8 0 -15 -7 -15 -15 C -15 -23 -8 -30 0 -30 C 8 -30 15 -23 15 -15 C 15 -7 8 0 0 0 L 0 -15 Z" fill="#3d1810"/>
+    <circle cx="0" cy="-15" r="6" fill="#a88c6c"/>
+  </g>
+</svg>
