@@ -55,8 +55,8 @@ export const MARKERS: MapMarkerData[] = [
 
 export const MAP_IMAGE_URL = "https://lh3.googleusercontent.com/aida-public/AB6AXuCx33cx8-lrSTDNs-pPRBxE7jmn2a_amrjLHvMUE2jj6dOBcWlpeYnueTBrsMfFa0cipEojmeAwgFY2guPhz4vnJplgBO9T61P1T9QQnyzyGT9wXcD8oXpsvyWqmH8GVsvlrUO0vFjR1KCMHAVHlcmROlBWgDcLpsGqrDxy-WRzMe0poBXWo6QaSZy5Iwb7PORPOAb_GvcAdUyWth76biRkMGJOKKyvft1vqSdrQDnlP3B5r59CUTm3DXv9vf3x05cMuOiOwAeM9E8";
 
-// Google Maps Configuration
-export const GOOGLE_MAPS_API_KEY = "AIzaSyC_GVhnMmlSUf2HiInHlIRTXXWdnAkgpZU"; // Reemplaza con tu API key de Google Maps
+// Google Maps Configuration - Usar variable de entorno
+export const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "";
 
 // Coordenadas de la EPN (Ubicación Actual)
 export const MAP_CENTER = {
