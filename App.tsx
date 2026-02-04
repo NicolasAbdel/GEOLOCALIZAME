@@ -87,9 +87,9 @@ const App: React.FC = () => {
             <Navbar isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
             
             {sharedLocationName && (
-              <div className="absolute top-16 md:top-20 left-1/2 transform -translate-x-1/2 z-50 px-3 md:px-6 py-2 md:py-3 bg-secondary/90 backdrop-blur-sm text-white rounded-full shadow-2xl flex items-center gap-2 animate-bounce max-w-[90%] md:max-w-none">
-                <span className="material-symbols-outlined text-lg md:text-2xl">location_on</span>
-                <span className="font-bold text-xs md:text-base truncate">Ubicación compartida: {sharedLocationName}</span>
+              <div className="absolute top-16 md:top-20 left-4 right-4 md:left-1/2 md:right-auto md:transform md:-translate-x-1/2 z-50 px-3 md:px-6 py-1.5 md:py-3 bg-secondary/90 backdrop-blur-sm text-white rounded-lg md:rounded-full shadow-2xl flex items-center justify-center gap-1.5 md:gap-2 md:animate-bounce md:max-w-none">
+                <span className="material-symbols-outlined text-base md:text-2xl flex-shrink-0">location_on</span>
+                <span className="font-bold text-[10px] md:text-base truncate">Ubicación: {sharedLocationName}</span>
               </div>
             )}
             
