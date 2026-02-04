@@ -1,0 +1,16 @@
+export interface HistoryItem {
+  id: string;
+  timestamp: string;
+  locationName: string;
+  address: string;
+  isLive?: boolean;
+}
+
+export interface MapMarkerData {
+  id: string;
+  top: string;
+  left: string;
+  color: string;
+  label: string;
+  isCurrent?: boolean;
+}

@@ -1,0 +1,5 @@
+{
+  "name": "Geolocalízame Dashboard",
+  "description": "A high-fidelity satellite tracking interface with a 16:9 aspect ratio constraint and real-time visualization features.",
+  "requestFramePermissions": []
+}
